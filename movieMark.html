@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Saved Movie | MIGOMOVIE</title>
+    <link href="home.css" rel="stylesheet" />
+    <style type="text/css">
+      .hidden {
+        display: none;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="text/javascript">
+      $("html").addClass("hidden");
+      $(document).ready(function () {
+        $("html").show();
+      });
+    </script>
+    <script defer type="module" src="movieMark.js"></script>
+    <link
+      rel="shortcut icon"
+      sizes="114x114"
+      type="image/x-icon"
+      href="images/logo.png"
+    />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule=""
+      src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"
+    ></script>
+    <div id="fb-root"></div>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="sidebar close">
+      <header>
+        <div class="image-text">
+          <span class="image">
+            <img src="./images/logo.png" alt="logoteam" />
+          </span>
+
+          <div class="text logo-text">
+            <span class="name">MiGoMovie</span>
+            <span class="profession">Kho Phim Hay</span>
+          </div>
+        </div>
+
+        <i class="bx bx-chevron-right toggle"></i>
+      </header>
+
+      <div class="menu-bar">
+        <div class="menu">
+          <ul>
+            <li class="search-box">
+              <i class="bx bx-search icon"></i>
+              <input type="text" placeholder="Tìm kiếm..." id="searchinput" />
+            </li>
+          </ul>
+
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a href="/home.html">
+                <i class="bx bx-home-alt icon"></i>
+                <span class="text nav-text">Trang Chủ</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/movie.html">
+                <i class="bx bx-play-circle icon"></i>
+                <span class="text nav-text">Xem Phim</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/upmovie.html">
+                <i class="bx bx-bell icon"></i>
+                <span class="text nav-text">Sắp Ra Mắt</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/toprate.html">
+                <i class="bx bx-star icon"></i>
+                <span class="text nav-text">Top Rate</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/movieMark.html">
+                <i class="bx bx-bookmarks icon"></i>
+                <span class="text nav-text">Đã Lưu</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/about.html">
+                <i class="bx bx-info-circle icon"></i>
+                <span class="text nav-text">Thông Tin</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <ul class="bottom-content">
+          <li id="signoutdata">
+            <a href="#">
+              <i class="bx bx-log-out icon"></i>
+              <span class="text nav-text">Đăng Xuất</span>
+            </a>
+          </li>
+
+          <li class="mode">
+            <img
+              src="./images/nonava.png"
+              alt="avataraccount"
+              class="avatar"
+              id="ava"
+            />
+            <span class="text"><span class="username"></span></span>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="home">
+      <div class="preLoader">
+        <div class="newtons-cradle">
+          <div class="newtons-cradle__dot"></div>
+          <div class="newtons-cradle__dot"></div>
+          <div class="newtons-cradle__dot"></div>
+          <div class="newtons-cradle__dot"></div>
+        </div>
+      </div>
+      <div class="main_container" style="display: none">
+        <h1 class="text_movie">Các Bộ Phim Đã Lưu</h1>
+        <div class="search_result_div"></div>
+        <div class="spacedown"></div>
+      </div>
+    </section>
+
+    <div class="theme-container">
+      <input type="checkbox" class="checkbox" id="checkbox" />
+      <label for="checkbox" class="checkbox-label">
+        <ion-icon name="moon" class="moon"></ion-icon>
+        <ion-icon name="sunny" class="sunny"></ion-icon>
+        <span class="ball"></span>
+      </label>
+    </div>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+    </script>
+  </body>
+</html>

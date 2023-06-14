@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
+    <title>Sign In-Up | MIGOMOVIE</title>
+    <link href="login.css" rel="stylesheet" />
+    <script defer src="login.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="text/javascript">
+      $("html").addClass("hidden");
+      $(document).ready(function () {
+        $("html").show();
+      });
+    </script>
+    <link
+      rel="shortcut icon"
+      sizes="114x114"
+      type="image/x-icon"
+      href="images/logo.png"
+    />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule=""
+      src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+  <body>
+    <div class="container" id="container">
+      <div class="form-container sign-up-container">
+        <form>
+          <h1>Tạo Tài Khoản</h1>
+          <span>để trải nghiệm phim sớm nhất</span>
+          <div class="textInputWrapper">
+            <input
+              type="text"
+              id="name"
+              placeholder="Tên"
+              required
+              class="textInput"
+            />
+          </div>
+          <div class="textInputWrapper">
+            <input
+              type="email"
+              id="email"
+              placeholder="Email"
+              required
+              class="textInput"
+            />
+          </div>
+          <div class="textInputWrapper">
+            <input
+              type="password"
+              id="password"
+              placeholder="Mật khẩu"
+              class="textInput"
+              required
+            />
+          </div>
+          <br />
+          <button type="submit" id="signupdata">Đăng Kí</button>
+        </form>
+      </div>
+      <div class="form-container sign-in-container">
+        <form>
+          <h1>Đăng Nhập</h1>
+          <div class="social-container">
+            <a href="#" class="social" id="facebooksignin"
+              ><ion-icon name="logo-facebook"></ion-icon
+            ></a>
+            <a href="#" class="social" id="ggsignin"
+              ><ion-icon name="logo-google"></ion-icon
+            ></a>
+            <a href="#" class="social" id="twittersignin"
+              ><ion-icon name="logo-twitter"></ion-icon
+            ></a>
+          </div>
+          <span>hoặc sử dụng tài khoản đã có</span>
+          <div class="textInputWrapper">
+            <input
+              type="email"
+              id="email-log"
+              placeholder="Email"
+              class="textInput"
+            />
+          </div>
+          <div class="textInputWrapper">
+            <input
+              type="password"
+              id="password-log"
+              placeholder="Mật khẩu"
+              class="textInput"
+            />
+          </div>
+          <a href="#">Bạn quên mật khẩu?</a>
+          <button type="submit" id="signindata">Đăng Nhập</button>
+        </form>
+      </div>
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h1>Chào mừng!</h1>
+            <p>Vui lòng đăng nhập để trải nghiệm các tính năng của MiGoMovie</p>
+            <button class="ghost" id="signIn">Đăng Nhập</button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h1>Xin chào!</h1>
+            <p>Bạn có thể đăng kí tại đây</p>
+            <button class="ghost" id="signUp">Đăng Kí</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="list">
+      <h1>Chào mừng bạn <span class="username"></span> đã đăng nhập</h1>
+      <button type="submit" id="signoutdata">Đăng Xuất</button>
+    </div> -->
+    <div class="theme-container">
+      <input type="checkbox" class="checkbox" id="checkbox" />
+      <label for="checkbox" class="checkbox-label">
+        <ion-icon name="moon" class="moon"></ion-icon>
+        <ion-icon name="sunny" class="sunny"></ion-icon>
+        <span class="ball"></span>
+      </label>
+    </div>
+  </body>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+    import {
+      getDatabase,
+      set,
+      ref,
+      update,
+    } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      sendEmailVerification,
+      updateProfile,
+      signInWithEmailAndPassword,
+      onAuthStateChanged,
+      signOut,
+      signInWithPopup,
+      GoogleAuthProvider,
+      FacebookAuthProvider,
+      TwitterAuthProvider,
+    } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBqJwRtrx9eDiFUxL8muj4NKJisH78GS9M",
+      authDomain: "auth-migomovie.firebaseapp.com",
+      databaseURL: "https://auth-migomovie-default-rtdb.firebaseio.com",
+      projectId: "auth-migomovie",
+      storageBucket: "auth-migomovie.appspot.com",
+      messagingSenderId: "165090376492",
+      appId: "1:165090376492:web:7c970c762354e5b2304a89",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth();
+    const authForm = document.querySelector(".container");
+    const list = document.querySelector(".list");
+
+    // list.style.display = "none";
+
+    const register = async (name, email, password) => {
+      if (
+        validate_field(name) == false ||
+        validate_field(email) == false ||
+        validate_field(password) == false
+      ) {
+        alert("Vui lòng nhập đầy đủ thông tin!");
+        return;
+      }
+      if (ValidateEmail(email) == false) {
+        return;
+      }
+      if (ValidatePassword(password) == false) {
+        return;
+      }
+
+      try {
+        await createUserWithEmailAndPassword(auth, email, password).catch(
+          (err) => {
+            if (err.code === "weak-password") {
+              alert("Mật khẩu bạn không đủ bảo mật.");
+              register.abort();
+            } else if (err.code === "auth/email-already-in-use") {
+              alert("Email này đã được sử dụng.");
+              register.abort();
+            }
+            console.log(err);
+          }
+        );
+        await alert("Đăng kí tài khoản thành công!");
+        await sendEmailVerification(auth.currentUser).catch((err) =>
+          console.log(err)
+        );
+        await updateProfile(auth.currentUser, { displayName: name }).catch(
+          (err) => console.log(err)
+        );
+        await set(ref(database, "users/" + auth.currentUser.uid), {
+          name: name,
+          email: email,
+          password: password,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    signupdata.addEventListener("click", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      register(name, email, password);
+    });
+
+    signindata.addEventListener("click", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email-log").value;
+      const password = document.getElementById("password-log").value;
+
+      if (validate_field(email) == false || validate_field(password) == false) {
+        alert("Vui lòng nhập đầy đủ thông tin!");
+        return;
+      }
+      if (ValidateEmail(email) == false) {
+        return;
+      }
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          window.location.href = "home.html";
+          alert("Đăng nhập thành công!");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          if (errorCode === "auth/wrong-password") {
+            alert("Mật khẩu bạn nhập không khớp với tài khoản!");
+          } else if (errorCode === "auth/too-many-requests") {
+            alert(
+              "Bạn đã đăng nhập liên tục, vui lòng đợi một vài phút hoặc reset lại mật khẩu."
+            );
+          } else if (errorCode === "auth/user-not-found") {
+            alert("Tài khoản bạn đăng nhập chưa được đăng kí!");
+          } else {
+            alert(errorMessage);
+          }
+        });
+    });
+
+    function ValidateEmail(email) {
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+        return true;
+      }
+      alert("Vui lòng nhập đúng cú pháp của Email!");
+      return false;
+    }
+
+    function ValidatePassword(password) {
+      if (password.length < 6) {
+        alert("Mật khẩu phải trên 6 kí tự!");
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    function validate_field(field) {
+      if (field == null) {
+        return false;
+      }
+
+      if (field.length <= 0) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    // Google SignIn
+    const ggprovider = new GoogleAuthProvider();
+    ggprovider.addScope("email");
+    document.getElementById("ggsignin").addEventListener("click", function () {
+      signInWithPopup(auth, ggprovider)
+        .then((result) => {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const token = credential.accessToken;
+          // The signed-in user info.
+          const user = result.user;
+          // console.log(user);
+          window.location.href = "home.html";
+          // IdP data available using getAdditionalUserInfo(result)
+          // ...
+        })
+        .catch((error) => {
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // The email of the user's account used.
+          const email = error.customData.email;
+          // The AuthCredential type that was used.
+          const credential = GoogleAuthProvider.credentialFromError(error);
+          // ...
+          console.log(errorCode, errorMessage, email, credential);
+        });
+    });
+
+    //Facebook SignIn
+    const fbprovider = new FacebookAuthProvider();
+    fbprovider.addScope("public_profile, email");
+    document
+      .getElementById("facebooksignin")
+      .addEventListener("click", function () {
+        signInWithPopup(auth, fbprovider)
+          .then((result) => {
+            // The signed-in user info.
+            const user = result.user;
+            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+            const credential =
+              FacebookAuthProvider.credentialFromResult(result);
+            const accessToken = credential.accessToken;
+            window.location.href = "home.html";
+            // IdP data available using getAdditionalUserInfo(result)
+            // ...
+          })
+          .catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = FacebookAuthProvider.credentialFromError(error);
+            // ...
+            console.log(errorCode, errorMessage, email, credential);
+          });
+      });
+
+    //Twitter SignIn
+    const twprovider = new TwitterAuthProvider();
+    document
+      .getElementById("twittersignin")
+      .addEventListener("click", function () {
+        signInWithPopup(auth, twprovider)
+          .then((result) => {
+            // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
+            // You can use these server side with your app's credentials to access the Twitter API.
+            const credential = TwitterAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            const secret = credential.secret;
+
+            // The signed-in user info.
+            const user = result.user;
+            window.location.href = "home.html";
+            // IdP data available using getAdditionalUserInfo(result)
+            // ...
+          })
+          .catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = TwitterAuthProvider.credentialFromError(error);
+            // ...
+            console.log(errorCode, errorMessage, email, credential);
+          });
+      });
+  </script>
+</html>

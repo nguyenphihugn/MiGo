@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
+    <title>About | MIGOMOVIE</title>
+    <link href="home.css" rel="stylesheet" />
+    <style type="text/css">
+      .hidden {
+        display: none;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="text/javascript">
+      $("html").addClass("hidden");
+      $(document).ready(function () {
+        $("html").show();
+      });
+    </script>
+    <script defer src="about.js"></script>
+    <link
+      rel="shortcut icon"
+      sizes="114x114"
+      type="image/x-icon"
+      href="images/logo.png"
+    />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule=""
+      src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="sidebar close">
+      <header>
+        <div class="image-text">
+          <span class="image">
+            <img src="./images/logo.png" alt="logoteam" />
+          </span>
+
+          <div class="text logo-text">
+            <span class="name">MiGoMovie</span>
+            <span class="profession">Kho Phim Hay</span>
+          </div>
+        </div>
+
+        <i class="bx bx-chevron-right toggle"></i>
+      </header>
+
+      <div class="menu-bar">
+        <div class="menu">
+          <ul>
+            <li class="search-box">
+              <i class="bx bx-search icon"></i>
+              <input type="text" placeholder="Tìm kiếm..." id="searchinput" />
+            </li>
+          </ul>
+
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a href="/home.html">
+                <i class="bx bx-home-alt icon"></i>
+                <span class="text nav-text">Trang Chủ</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/movie.html">
+                <i class="bx bx-play-circle icon"></i>
+                <span class="text nav-text">Xem Phim</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/upmovie.html">
+                <i class="bx bx-bell icon"></i>
+                <span class="text nav-text">Sắp Ra Mắt</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/toprate.html">
+                <i class="bx bx-star icon"></i>
+                <span class="text nav-text">Top Rate</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/movieMark.html">
+                <i class="bx bx-bookmarks icon"></i>
+                <span class="text nav-text">Đã Lưu</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/about.html">
+                <i class="bx bx-info-circle icon"></i>
+                <span class="text nav-text">Thông Tin</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <ul class="bottom-content">
+          <li id="signoutdata">
+            <a href="#">
+              <i class="bx bx-log-out icon"></i>
+              <span class="text nav-text">Đăng Xuất</span>
+            </a>
+          </li>
+
+          <li class="mode">
+            <img
+              src="./images/nonava.png"
+              alt="avataraccount"
+              class="avatar"
+              id="ava"
+            />
+            <span class="text"><span class="username"></span></span>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="home">
+      <div class="about_container">
+        <section class="faq">
+          <header class="faq__header">
+            <h2 class="faq__title">Thông Tin Về MiGoMovie</h2>
+            <p class="faq__subtitle">
+              Một số thông tin có thể giúp bạn có một trải nghiệm tốt hơn tại
+              đây
+            </p>
+          </header>
+          <hr class="faq__separator" />
+          <div class="faq__item">
+            <button
+              class="faq__question"
+              aria-expanded="false"
+              aria-controls="answer1"
+            >
+              Tại Sao Lại Là MiGoMovie?
+              <i class="faq__icon ri-arrow-drop-right-line"></i>
+            </button>
+            <div class="faq__answer" id="answer1" aria-hidden="true">
+              <div class="faq__answer-inner">
+                <p class="faq__answer-text">
+                  Cái tên được lấy ý tưởng từ món mì gõ thân thuộc và trang web
+                  này được làm bởi những người yêu thích món mì gõ .
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="faq__item">
+            <button
+              class="faq__question"
+              aria-expanded="false"
+              aria-controls="answer2"
+            >
+              Trang Xem Phim
+              <i class="faq__icon ri-arrow-drop-right-line"></i>
+            </button>
+            <div class="faq__answer" id="answer2" aria-hidden="true">
+              <div class="faq__answer-inner">
+                <p class="faq__answer-text">
+                  Trang xem phim được tổng hợp và lưu trữ bởi TheMovieDatabase -
+                  một website chứa dữ liệu phim khổng lồ trên toàn thế giới
+                  (được tổng hợp và chia sẻ bới cộng đồng người yêu thích phim).
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="faq__item">
+            <button
+              class="faq__question"
+              aria-expanded="false"
+              aria-controls="answer3"
+            >
+              Phim Sắp Ra Mắt
+              <i class="faq__icon ri-arrow-drop-right-line"></i>
+            </button>
+            <div class="faq__answer" id="answer3" aria-hidden="true">
+              <div class="faq__answer-inner">
+                <p class="faq__answer-text">
+                  Giúp cung cấp cho các bạn các bộ phim sắp công chiếu và các
+                  thông tin cụ thể nhất về bộ phim đó (tính từ ngày hiện tại ->
+                  ngày hiện tại của năm tới).
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="faq__item">
+            <button
+              class="faq__question"
+              aria-expanded="false"
+              aria-controls="answer4"
+            >
+              Top Rate
+              <i class="faq__icon ri-arrow-drop-right-line"></i>
+            </button>
+            <div class="faq__answer" id="answer4" aria-hidden="true">
+              <div class="faq__answer-inner">
+                <p class="faq__answer-text">
+                  Các bộ phim được tổng hợp về tổng lượt vote và điểm trung bình
+                  (IMDb) cao nhất.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="faq__item">
+            <button
+              class="faq__question"
+              aria-expanded="false"
+              aria-controls="answer4"
+            >
+              Thông Tin Liên Hệ
+              <i class="faq__icon ri-arrow-drop-right-line"></i>
+            </button>
+            <div class="faq__answer" id="answer4" aria-hidden="true">
+              <div class="faq__answer-inner">
+                <p class="faq__answer-text">
+                  Mọi thắc mắc vui lòng liên hệ qua các trang sau đây
+                  <a
+                    href="https://www.facebook.com/n.phihung1810/"
+                    target="_blank"
+                    class="icon_social"
+                    ><i class="bx bxl-facebook-circle"></i
+                  ></a>
+                  <a
+                    href="https://www.youtube.com/channel/UCHoxArABOuV0jCGdgTKZ21A"
+                    target="_blank"
+                    class="icon_social"
+                  >
+                    <i class="bx bxl-youtube"></i>
+                  </a>
+                  <a
+                    href="https://twitter.com/aziz_nguyen"
+                    target="_blank"
+                    class="icon_social"
+                    ><i class="bx bxl-twitter"></i
+                  ></a>
+                  <a
+                    href="https://www.instagram.com/nphi_hung/"
+                    target="_blank"
+                    class="icon_social"
+                  >
+                    <i class="bx bxl-instagram-alt"></i>
+                  </a>
+                  <a
+                    href="https://github.com/nguyenphihugn"
+                    target="_blank"
+                    class="icon_social"
+                    ><i class="bx bxl-github"></i
+                  ></a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <div class="theme-container">
+      <input type="checkbox" class="checkbox" id="checkbox" />
+      <label for="checkbox" class="checkbox-label">
+        <ion-icon name="moon" class="moon"></ion-icon>
+        <ion-icon name="sunny" class="sunny"></ion-icon>
+        <span class="ball"></span>
+      </label>
+    </div>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+      import {
+        getDatabase,
+        set,
+        ref,
+        update,
+      } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+      import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        sendEmailVerification,
+        updateProfile,
+        signInWithEmailAndPassword,
+        onAuthStateChanged,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBqJwRtrx9eDiFUxL8muj4NKJisH78GS9M",
+        authDomain: "auth-migomovie.firebaseapp.com",
+        databaseURL: "https://auth-migomovie-default-rtdb.firebaseio.com",
+        projectId: "auth-migomovie",
+        storageBucket: "auth-migomovie.appspot.com",
+        messagingSenderId: "165090376492",
+        appId: "1:165090376492:web:7c970c762354e5b2304a89",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+      const auth = getAuth();
+      const user = auth.currentUser;
+
+      onAuthStateChanged(auth, (user) => {
+        const username = document.querySelector(".username");
+        if (user) {
+          const uid = user.uid;
+          username.innerHTML = user.displayName;
+          if (user.photoURL != null) {
+            // Use user.photoUrl
+            document.getElementById("ava").src = user.photoURL;
+          }
+          console.log(user);
+        } else {
+          window.location.href = "login.html";
+        }
+      });
+
+      signoutdata.addEventListener("click", (e) => {
+        e.preventDefault();
+        signOut(auth)
+          .then(() => {
+            // Sign-out successful.
+            window.location.href = "login.html";
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            alert(errorMessage);
+          });
+      });
+    </script>
+  </body>
+</html>

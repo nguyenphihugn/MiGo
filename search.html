@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
+    <title>Search | MIGOMOVIE</title>
+    <link href="home.css" rel="stylesheet" />
+    <script defer src="search.js"></script>
+    <style type="text/css">
+      .hidden {
+        display: none;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="text/javascript">
+      $("html").addClass("hidden");
+      $(document).ready(function () {
+        $("html").show();
+      });
+    </script>
+    <link
+      rel="shortcut icon"
+      sizes="114x114"
+      type="image/x-icon"
+      href="images/logo.png"
+    />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule=""
+      src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"
+    ></script>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="sidebar close">
+      <header>
+        <div class="image-text">
+          <span class="image">
+            <img src="./images/logo.png" alt="logoteam" />
+          </span>
+
+          <div class="text logo-text">
+            <span class="name">MiGoMovie</span>
+            <span class="profession">Kho Phim Hay</span>
+          </div>
+        </div>
+
+        <i class="bx bx-chevron-right toggle"></i>
+      </header>
+
+      <div class="menu-bar">
+        <div class="menu">
+          <ul>
+            <li class="search-box">
+              <i class="bx bx-search icon"></i>
+              <input type="text" placeholder="Tìm kiếm..." />
+            </li>
+          </ul>
+
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a href="/home.html">
+                <i class="bx bx-home-alt icon"></i>
+                <span class="text nav-text">Trang Chủ</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/movie.html">
+                <i class="bx bx-play-circle icon"></i>
+                <span class="text nav-text">Xem Phim</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/upmovie.html">
+                <i class="bx bx-bell icon"></i>
+                <span class="text nav-text">Sắp Ra Mắt</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/toprate.html">
+                <i class="bx bx-star icon"></i>
+                <span class="text nav-text">Top Rate</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/movieMark.html">
+                <i class="bx bx-bookmarks icon"></i>
+                <span class="text nav-text">Đã Lưu</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/about.html">
+                <i class="bx bx-info-circle icon"></i>
+                <span class="text nav-text">Thông Tin</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <ul class="bottom-content">
+          <li id="signoutdata">
+            <a href="#">
+              <i class="bx bx-log-out icon"></i>
+              <span class="text nav-text">Đăng Xuất</span>
+            </a>
+          </li>
+
+          <li class="mode">
+            <img
+              src="./images/nonava.png"
+              alt="avataraccount"
+              class="avatar"
+              id="ava"
+            />
+            <span class="text"><span class="username"></span></span>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="home">
+      <div class="search-box-2">
+        <input type="text" placeholder="Tìm kiếm..." id="searchinput" />
+        <!-- <i class="bx bxs-microphone" id="micro"></i> -->
+      </div>
+      <div class="text" id="searchresult">Nhập từ khoá tìm kiếm</div>
+      <div class="search_result_div"></div>
+      <div class="spacedown"></div>
+    </section>
+
+    <div class="theme-container">
+      <input type="checkbox" class="checkbox" id="checkbox" />
+      <label for="checkbox" class="checkbox-label">
+        <ion-icon name="moon" class="moon"></ion-icon>
+        <ion-icon name="sunny" class="sunny"></ion-icon>
+        <span class="ball"></span>
+      </label>
+    </div>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+      import {
+        getDatabase,
+        set,
+        ref,
+        update,
+      } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+      import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        sendEmailVerification,
+        updateProfile,
+        signInWithEmailAndPassword,
+        onAuthStateChanged,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBqJwRtrx9eDiFUxL8muj4NKJisH78GS9M",
+        authDomain: "auth-migomovie.firebaseapp.com",
+        databaseURL: "https://auth-migomovie-default-rtdb.firebaseio.com",
+        projectId: "auth-migomovie",
+        storageBucket: "auth-migomovie.appspot.com",
+        messagingSenderId: "165090376492",
+        appId: "1:165090376492:web:7c970c762354e5b2304a89",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+      const auth = getAuth();
+      const user = auth.currentUser;
+
+      onAuthStateChanged(auth, (user) => {
+        const username = document.querySelector(".username");
+        if (user) {
+          const uid = user.uid;
+          username.innerHTML = user.displayName;
+          if (user.photoURL != null) {
+            // Use user.photoUrl
+            document.getElementById("ava").src = user.photoURL;
+          }
+          // console.log(user);
+        } else {
+          window.location.href = "login.html";
+        }
+      });
+
+      signoutdata.addEventListener("click", (e) => {
+        e.preventDefault();
+        signOut(auth)
+          .then(() => {
+            // Sign-out successful.
+            window.location.href = "login.html";
+            alert("Đăng xuất thành công!");
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert(errorMessage);
+          });
+      });
+    </script>
+  </body>
+</html>

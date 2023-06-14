@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
+    <title>Home | MIGOMOVIE</title>
+    <link href="home.css" rel="stylesheet" />
+    <script defer src="home.js"></script>
+    <style type="text/css">
+      .hidden {
+        display: none;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="text/javascript">
+      $("html").addClass("hidden");
+      $(document).ready(function () {
+        $("html").show();
+      });
+    </script>
+    <link
+      rel="shortcut icon"
+      sizes="114x114"
+      type="image/x-icon"
+      href="images/logo.png"
+    />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule=""
+      src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"
+    ></script>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="sidebar close">
+      <header>
+        <div class="image-text">
+          <span class="image">
+            <img src="./images/logo.png" alt="logoteam" />
+          </span>
+
+          <div class="text logo-text">
+            <span class="name">MiGoMovie</span>
+            <span class="profession">Kho Phim Hay</span>
+          </div>
+        </div>
+
+        <i class="bx bx-chevron-right toggle"></i>
+      </header>
+
+      <div class="menu-bar">
+        <div class="menu">
+          <ul>
+            <li class="search-box">
+              <i class="bx bx-search icon"></i>
+              <input type="text" placeholder="Tìm kiếm..." id="searchinput" />
+            </li>
+          </ul>
+
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a href="/home.html">
+                <i class="bx bx-home-alt icon"></i>
+                <span class="text nav-text">Trang Chủ</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/movie.html">
+                <i class="bx bx-play-circle icon"></i>
+                <span class="text nav-text">Xem Phim</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/upmovie.html">
+                <i class="bx bx-bell icon"></i>
+                <span class="text nav-text">Sắp Ra Mắt</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/toprate.html">
+                <i class="bx bx-star icon"></i>
+                <span class="text nav-text">Top Rate</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/movieMark.html">
+                <i class="bx bx-bookmarks icon"></i>
+                <span class="text nav-text">Đã Lưu</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/about.html">
+                <i class="bx bx-info-circle icon"></i>
+                <span class="text nav-text">Thông Tin</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <ul class="bottom-content">
+          <li id="signoutdata">
+            <a href="#">
+              <i class="bx bx-log-out icon"></i>
+              <span class="text nav-text">Đăng Xuất</span>
+            </a>
+          </li>
+
+          <li class="mode">
+            <img
+              src="./images/nonava.png"
+              alt="avataraccount"
+              class="avatar"
+              id="ava"
+            />
+            <span class="text"><span class="username"></span></span>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="home">
+      <div class="notification">
+        <p>Xin chào <span></span> <i class="bx bxs-face bx-spin"></i></p>
+        <span class="notification__progress"></span>
+      </div>
+      <div class="trending_container">
+        <div class="Trending_arrow_container">
+          <?xml version="1.0" ?>
+          <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+          <svg
+            class="trending_arrow trending_left_btn"
+            height="512px"
+            id="Layer_1"
+            style="enable-background: new 0 0 512 512"
+            version="1.1"
+            viewBox="0 0 512 512"
+            xml:space="preserve"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <polygon
+              points="352,115.4 331.3,96 160,256 331.3,416 352,396.7 201.5,256 "
+            />
+          </svg>
+          <?xml version="1.0" ?>
+          <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+          <svg
+            class="trending_arrow trending_right_btn"
+            height="512px"
+            id="Layer_1"
+            style="enable-background: new 0 0 512 512"
+            version="1.1"
+            viewBox="0 0 512 512"
+            xml:space="preserve"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <polygon
+              points="160,115.4 180.7,96 352,256 180.7,416 160,396.7 310.5,256 "
+            />
+          </svg>
+        </div>
+
+        <div class="trending_poster trending_div_container"></div>
+      </div>
+      <section
+        class="Now_playing_movies_container Now_playing_movies_container_trend"
+        id="nowplaying"
+      >
+        <h4 class="Now_playing_movies_container_title">
+          Phim đang được xem tại MiGoMovie
+        </h4>
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="leftarrow arrowbtn bi-chevron-left"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+          />
+        </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="rightarrow rightarrowindex arrowbtn bi-chevron-right"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+          />
+        </svg>
+        <div class="Now_playing_movies_div"></div>
+      </section>
+      <section class="Now_playing_movies_container" id="Trendingmovies">
+        <h4 class="Now_playing_movies_container_title">Phim Hot</h4>
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="leftarrow arrowbtn bi-chevron-left"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+          />
+        </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="rightarrow rightarrowindex arrowbtn bi-chevron-right"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+          />
+        </svg>
+        <div class="current_popular_movies_div"></div>
+      </section>
+      <div class="spacedown"></div>
+    </section>
+
+    <div class="theme-container">
+      <input type="checkbox" class="checkbox" id="checkbox" />
+      <label for="checkbox" class="checkbox-label">
+        <ion-icon name="moon" class="moon"></ion-icon>
+        <ion-icon name="sunny" class="sunny"></ion-icon>
+        <span class="ball"></span>
+      </label>
+    </div>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+      import {
+        getDatabase,
+        set,
+        ref,
+        update,
+      } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+      import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        sendEmailVerification,
+        updateProfile,
+        signInWithEmailAndPassword,
+        onAuthStateChanged,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBqJwRtrx9eDiFUxL8muj4NKJisH78GS9M",
+        authDomain: "auth-migomovie.firebaseapp.com",
+        databaseURL: "https://auth-migomovie-default-rtdb.firebaseio.com",
+        projectId: "auth-migomovie",
+        storageBucket: "auth-migomovie.appspot.com",
+        messagingSenderId: "165090376492",
+        appId: "1:165090376492:web:7c970c762354e5b2304a89",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+      const auth = getAuth();
+      const user = auth.currentUser;
+
+      onAuthStateChanged(auth, (user) => {
+        const username = document.querySelector(".username");
+        if (user) {
+          const uid = user.uid;
+          const date = new Date();
+          const time =
+            (date.getDate() > 9 ? date.getDate() : "0" + date.getDate()) +
+            "/" +
+            (date.getMonth() > 8
+              ? date.getMonth() + 1
+              : "0" + (date.getMonth() + 1)) +
+            "/" +
+            date.getFullYear();
+          update(ref(database, "users/" + uid), {
+            last_login: time,
+          });
+          username.innerHTML = user.displayName;
+          if (user.photoURL != null) {
+            // Use user.photoUrl
+            document.getElementById("ava").src = user.photoURL;
+          }
+          // console.log(user);
+        } else {
+          window.location.href = "login.html";
+        }
+      });
+
+      signoutdata.addEventListener("click", (e) => {
+        e.preventDefault();
+        signOut(auth)
+          .then(() => {
+            // Sign-out successful.
+            window.location.href = "login.html";
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            alert(errorMessage);
+          });
+      });
+    </script>
+  </body>
+</html>
