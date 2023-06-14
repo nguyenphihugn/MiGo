@@ -84,7 +84,7 @@ const Castfun = (castee) => {
 const comment = function (id) {
   return `<div
   class="fb-comments"
-  data-href="https://migomovie.netlify.app/moviedetail/${id}"
+  data-href="https://migomovie.netlify.app/moviedetail?id=${id}"
   data-width="600"
   data-numposts="5"
   data-order-by="reverse_time"
