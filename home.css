@@ -1181,6 +1181,10 @@ header .image-text .profession {
   margin-bottom: 3.125rem;
 }
 
+.movie {
+  height: 90vh;
+}
+
 .youtubePlayer {
   margin: auto;
   width: 69%;
@@ -1686,6 +1690,31 @@ header .image-text .profession {
 
   .trending_title {
     font-size: 1.2rem;
+  }
+
+  .movie {
+    height: 50vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    margin: auto;
+  }
+}
+
+@media (max-width: 1000px) and (max-height: 500px) {
+  html {
+    font-size: 80%;
+  }
+
+  .theme-container {
+    z-index: -1;
+  }
+
+  .movie {
+    height: 100vh;
   }
 }
 

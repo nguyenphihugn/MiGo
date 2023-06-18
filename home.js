@@ -11,6 +11,7 @@ const trending_right_btn = document.querySelector(".trending_right_btn");
 const trending_container = document.querySelector(".trending_container");
 const leftArrow = document.querySelectorAll(".leftarrow");
 const rightarrow = document.querySelectorAll(".rightarrow");
+const noti = document.querySelector(".body_noti");
 const body = document.querySelector("body"),
   sidebar = body.querySelector("nav"),
   toggle = body.querySelector(".toggle"),
@@ -40,6 +41,18 @@ if (mode == "light") {
   document.documentElement.classList.remove("dark");
   document.documentElement.classList.add("light");
 }
+
+const greeting = [
+  "Chào buổi sáng 🌞",
+  "Chào buổi chiều ⛅",
+  "Chào buổi tối 🌟",
+];
+
+const currentHour = new Date().getHours();
+
+let hii = currentHour >= 13 && currentHour < 18 ? 1 : currentHour >= 18 ? 2 : 0;
+
+noti.innerHTML = greeting[hii];
 
 toggle.addEventListener("click", () => {
   sidebar.classList.toggle("close");

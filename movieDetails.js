@@ -303,7 +303,7 @@ const html2 = function (moviee) {
                       </svg></span></p>
           </div>
           <div class="playButtonContainer"> 
-          <a class="playLink" href="https://www.2embed.to/embed/imdb/movie?id=${
+          <a class="playLink" href="./playmovie.html?id=${
             moviee.imdb_id
           }"><button class="play_btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                   fill="currentColor" class="path_btn bi-play-fill" viewBox="0 0 16 16">

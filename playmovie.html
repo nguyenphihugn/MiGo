@@ -8,9 +8,8 @@
       http-equiv="Content-Security-Policy"
       content="upgrade-insecure-requests"
     />
-    <title>Home | MIGOMOVIE</title>
+    <title>BigFilm | MIGOMOVIE</title>
     <link href="home.css" rel="stylesheet" />
-    <script defer src="home.js"></script>
     <style type="text/css">
       .hidden {
         display: none;
@@ -23,6 +22,7 @@
         $("html").show();
       });
     </script>
+    <script defer src="playmovie.js"></script>
     <link
       rel="shortcut icon"
       sizes="114x114"
@@ -135,118 +135,16 @@
     </nav>
 
     <section class="home">
-      <div class="notification">
-        <p class="body_noti"></p>
-        <span class="notification__progress"></span>
-      </div>
-      <div class="trending_container">
-        <div class="Trending_arrow_container">
-          <?xml version="1.0" ?>
-          <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
-          <svg
-            class="trending_arrow trending_left_btn"
-            height="512px"
-            id="Layer_1"
-            style="enable-background: new 0 0 512 512"
-            version="1.1"
-            viewBox="0 0 512 512"
-            xml:space="preserve"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <polygon
-              points="352,115.4 331.3,96 160,256 331.3,416 352,396.7 201.5,256 "
-            />
-          </svg>
-          <?xml version="1.0" ?>
-          <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
-          <svg
-            class="trending_arrow trending_right_btn"
-            height="512px"
-            id="Layer_1"
-            style="enable-background: new 0 0 512 512"
-            version="1.1"
-            viewBox="0 0 512 512"
-            xml:space="preserve"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <polygon
-              points="160,115.4 180.7,96 352,256 180.7,416 160,396.7 310.5,256 "
-            />
-          </svg>
+      <div class="preLoader">
+        <div class="newtons-cradle">
+          <div class="newtons-cradle__dot"></div>
+          <div class="newtons-cradle__dot"></div>
+          <div class="newtons-cradle__dot"></div>
+          <div class="newtons-cradle__dot"></div>
         </div>
-
-        <div class="trending_poster trending_div_container"></div>
       </div>
-      <section
-        class="Now_playing_movies_container Now_playing_movies_container_trend"
-        id="nowplaying"
-      >
-        <h4 class="Now_playing_movies_container_title">
-          Phim đang được xem tại MiGoMovie
-        </h4>
 
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          class="leftarrow arrowbtn bi-chevron-left"
-          viewBox="0 0 16 16"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
-          />
-        </svg>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          class="rightarrow rightarrowindex arrowbtn bi-chevron-right"
-          viewBox="0 0 16 16"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-          />
-        </svg>
-        <div class="Now_playing_movies_div"></div>
-      </section>
-      <section class="Now_playing_movies_container" id="Trendingmovies">
-        <h4 class="Now_playing_movies_container_title">Phim Hot</h4>
-
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          class="leftarrow arrowbtn bi-chevron-left"
-          viewBox="0 0 16 16"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
-          />
-        </svg>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          class="rightarrow rightarrowindex arrowbtn bi-chevron-right"
-          viewBox="0 0 16 16"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-          />
-        </svg>
-        <div class="current_popular_movies_div"></div>
-      </section>
-      <div class="spacedown"></div>
+      <section class="movie"></section>
     </section>
 
     <div class="theme-container">
@@ -300,18 +198,6 @@
         const username = document.querySelector(".username");
         if (user) {
           const uid = user.uid;
-          const date = new Date();
-          const time =
-            (date.getDate() > 9 ? date.getDate() : "0" + date.getDate()) +
-            "/" +
-            (date.getMonth() > 8
-              ? date.getMonth() + 1
-              : "0" + (date.getMonth() + 1)) +
-            "/" +
-            date.getFullYear();
-          update(ref(database, "users/" + uid), {
-            last_login: time,
-          });
           username.innerHTML = user.displayName;
           if (user.photoURL != null) {
             // Use user.photoUrl
