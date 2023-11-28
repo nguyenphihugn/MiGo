@@ -29,7 +29,7 @@
         $("html").show();
       });
     </script>
-    <script defer src="movieDetails.js"></script>
+    <script src="movieDetails.js" defer></script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"
@@ -56,7 +56,7 @@
       <header>
         <div class="image-text">
           <span class="image">
-            <img src="./images/logo.png" alt="logoteam" />
+            <img src="./images/image-removebg-preview.png" alt="logoteam" />
           </span>
 
           <div class="text logo-text">
@@ -348,118 +348,136 @@
       // TODO: Add SDKs for Firebase products that you want to use
       // https://firebase.google.com/docs/web/setup#available-libraries
 
-      // Your web app's Firebase configuration
-      const firebaseConfig = {
-        apiKey: "AIzaSyBqJwRtrx9eDiFUxL8muj4NKJisH78GS9M",
-        authDomain: "auth-migomovie.firebaseapp.com",
-        databaseURL: "https://auth-migomovie-default-rtdb.firebaseio.com",
-        projectId: "auth-migomovie",
-        storageBucket: "auth-migomovie.appspot.com",
-        messagingSenderId: "165090376492",
-        appId: "1:165090376492:web:7c970c762354e5b2304a89",
-      };
+      document.addEventListener("DOMContentLoaded", function () {
+        // Your code here
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyBqJwRtrx9eDiFUxL8muj4NKJisH78GS9M",
+          authDomain: "auth-migomovie.firebaseapp.com",
+          databaseURL: "https://auth-migomovie-default-rtdb.firebaseio.com",
+          projectId: "auth-migomovie",
+          storageBucket: "auth-migomovie.appspot.com",
+          messagingSenderId: "165090376492",
+          appId: "1:165090376492:web:7c970c762354e5b2304a89",
+        };
 
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const database = getDatabase(app);
-      const auth = getAuth();
-      const user = auth.currentUser;
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const auth = getAuth();
+        const user = auth.currentUser;
 
-      onAuthStateChanged(auth, (user) => {
-        const username = document.querySelector(".username");
-        const btnmark = document.querySelector(".btn-mark");
-        let checkmark = 0;
-        let markid = 0;
-        let fetcid = url.slice(url.indexOf("=") + 1);
-        // console.log(fetcid);
-        if (user) {
-          const uid = user.uid;
-          username.innerHTML = user.displayName;
-          if (user.photoURL != null) {
-            // Use user.photoUrl
-            document.getElementById("ava").src = user.photoURL;
+        onAuthStateChanged(auth, (user) => {
+          const username = document.querySelector(".username");
+          const btnmark = document.querySelector(".btn-mark");
+          let checkmark = 0;
+          let markid = 0;
+          let fetcid = url.slice(url.indexOf("=") + 1);
+          // console.log(fetcid);
+          if (btnmark) {
+            // Kiểm tra xem btnmark có tồn tại không
+            var innerHTMLValue = btnmark.innerHTML;
+            if (innerHTMLValue !== null && innerHTMLValue !== undefined) {
+              // Kiểm tra giá trị của innerHTML
+              console.log("innerHTML is not null or undefined");
+              // Thực hiện các thao tác khác nếu cần
+            } else {
+              btnmark.innerHTML = "<i class='bx bx-bookmark' id='mark'></i>";
+            }
+          } else {
+            console.log("Element with ID 'yourButtonId' not found");
           }
 
-          // Check data in Database
-          get(child(ref(database), "users/" + uid + "/movieid"))
-            .then((snapshot) => {
-              if (snapshot.exists()) {
-                // console.log(snapshot.val());
-                var data = snapshot.val();
-                for (var key in data) {
-                  var temp = {
-                    key: key,
-                    id: data[key],
-                  };
-                  if (temp.id == fetcid) {
-                    checkmark = 1;
-                    markid = temp.key;
+          if (user) {
+            const uid = user.uid;
+            username.innerHTML = user.displayName;
+            if (user.photoURL != null) {
+              // Use user.photoUrl
+              document.getElementById("ava").src = user.photoURL;
+            }
+
+            // Check data in Database
+            get(child(ref(database), "users/" + uid + "/movieid"))
+              .then((snapshot) => {
+                if (snapshot.exists()) {
+                  // console.log(snapshot.val());
+                  var data = snapshot.val();
+                  for (var key in data) {
+                    var temp = {
+                      key: key,
+                      id: data[key],
+                    };
+                    if (temp.id == fetcid) {
+                      checkmark = 1;
+                      markid = temp.key;
+                    }
+                    // console.log(temp.id);
                   }
-                  // console.log(temp.id);
-                }
-                if (checkmark == 1) {
-                  btnmark.innerHTML =
-                    "<i class='bx bxs-bookmark' id='mark'></i>";
+                  if (checkmark == 1) {
+                    btnmark.innerHTML =
+                      "<i class='bx bxs-bookmark' id='mark'></i>";
+                  } else {
+                    btnmark.innerHTML =
+                      "<i class='bx bx-bookmark' id='mark'></i>";
+                  }
+                  window.localStorage.setItem("marked", checkmark);
+                  // console.log(checkmark);
                 } else {
+                  console.log("No data available");
                   btnmark.innerHTML =
                     "<i class='bx bx-bookmark' id='mark'></i>";
                 }
-                window.localStorage.setItem("marked", checkmark);
-                // console.log(checkmark);
-              } else {
-                console.log("No data available");
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+
+            // Xu ly du lieu
+            // console.log(user);
+            // const markBtn = document.querySelector(".btn-mark");
+            const markIcon = document.querySelector("#mark");
+            btnmark.addEventListener("click", () => {
+              if (checkmark == 1) {
+                remove(ref(database, "users/" + uid + "/movieid/" + markid), {
+                  fetcid,
+                });
                 btnmark.innerHTML = "<i class='bx bx-bookmark' id='mark'></i>";
+                checkmark = 0;
+                return;
+              } else if (checkmark == 0) {
+                btnmark.innerHTML = "<i class='bx bxs-bookmark' id='mark'></i>";
+                const newPostKey = push(
+                  child(ref(database), "users/" + uid + "/movieid")
+                ).key;
+                const updates = {};
+                updates["users/" + uid + "/movieid/" + newPostKey] = fetcid;
+                checkmark = 1;
+                update(ref(database), updates);
+                return;
+                // push(ref(database, "users/" + uid + "/movieid"), {
+                //   fetcid,
+                // });
               }
+            });
+          } else {
+            window.location.href = "login.html";
+          }
+        });
+
+        signoutdata.addEventListener("click", (e) => {
+          e.preventDefault();
+          signOut(auth)
+            .then(() => {
+              // Sign-out successful.
+              window.location.href = "login.html";
             })
             .catch((error) => {
-              console.error(error);
+              const errorCode = error.code;
+              const errorMessage = error.message;
+
+              alert(errorMessage);
             });
-
-          // Xu ly du lieu
-          // console.log(user);
-          const markBtn = document.querySelector(".btn-mark");
-          const markIcon = document.querySelector("#mark");
-          markBtn.addEventListener("click", () => {
-            if (checkmark == 1) {
-              remove(ref(database, "users/" + uid + "/movieid/" + markid), {
-                fetcid,
-              });
-              btnmark.innerHTML = "<i class='bx bx-bookmark' id='mark'></i>";
-              checkmark = 0;
-              return;
-            } else if (checkmark == 0) {
-              btnmark.innerHTML = "<i class='bx bxs-bookmark' id='mark'></i>";
-              const newPostKey = push(
-                child(ref(database), "users/" + uid + "/movieid")
-              ).key;
-              const updates = {};
-              updates["users/" + uid + "/movieid/" + newPostKey] = fetcid;
-              checkmark = 1;
-              update(ref(database), updates);
-              return;
-              // push(ref(database, "users/" + uid + "/movieid"), {
-              //   fetcid,
-              // });
-            }
-          });
-        } else {
-          window.location.href = "login.html";
-        }
-      });
-
-      signoutdata.addEventListener("click", (e) => {
-        e.preventDefault();
-        signOut(auth)
-          .then(() => {
-            // Sign-out successful.
-            window.location.href = "login.html";
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-
-            alert(errorMessage);
-          });
+        });
       });
     </script>
   </body>

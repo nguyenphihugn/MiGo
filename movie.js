@@ -69,7 +69,7 @@ genrelist();
 
 const firstpage = async () => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${myApi}&sort_by=vote_count.desc&include_adult=false&page=${intialPage}&with_genres=${categoryId}&language=vi-VN`
+    `https://api.themoviedb.org/3/discover/movie?api_key=${myApi}&sort_by=popularity.desc&include_adult=false&page=${intialPage}&with_genres=${categoryId}&language=vi-VN`
   );
   const data = await res.json();
   const airingtoday = data.results;
@@ -84,7 +84,7 @@ const firstpage = async () => {
 
 const airingTodayfun = async () => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${myApi}&sort_by=vote_count.desc&include_adult=false&with_genres=${categoryId}&language=vi-VN`
+    `https://api.themoviedb.org/3/discover/movie?api_key=${myApi}&sort_by=popularity.desc&include_adult=false&with_genres=${categoryId}&language=vi-VN`
   );
   const data = await res.json();
   let totalPages = data.total_pages;

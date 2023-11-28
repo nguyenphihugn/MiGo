@@ -38,14 +38,16 @@ html {
 :root.light {
   --body-color: #e4e9f7;
   --sidebar-color: #fff;
-  --primary-color: #3988e9;
-  --color-gra-two: #0072ff;
+  /* --primary-color: #3988e9; */
+  /* --color-gra-two: #0072ff; */
+  --primary-color: #1fd5c9;
+  --color-gra-two: #45c0a3;
   --primary-color-light: #f6f5ff;
   --toggle-color: #ddd;
   --text-color: #707070;
   --movie-text: #18191a;
   --movie-text-side: #352f2f;
-  --color-btn: 0, 114, 255;
+  --color-btn: 31, 213, 201;
   --bg-btn-1: #4ca1af;
   --bg-btn-2: #c4e0e5;
   --fb-bg: #c4e0e5;
@@ -54,6 +56,24 @@ html {
   --tran-03: all 0.3s ease;
   --tran-04: all 0.3s ease;
   --tran-05: all 0.3s ease;
+}
+
+body {
+  scrollbar-color: var(--primary-color) var(--body-color);
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--body-color);
+  border-radius: 20px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 20px;
 }
 
 body {
@@ -582,7 +602,7 @@ header .image-text .profession {
   height: 0.188rem;
   transform: scaleX(0);
   transform-origin: left;
-  background-image: linear-gradient(to right, #539bdb, #3250bf);
+  background-image: linear-gradient(to right, #45c0a3, #1fd5c9);
   border-radius: inherit;
   animation: load 2.5s 0.25s linear forwards;
 }
