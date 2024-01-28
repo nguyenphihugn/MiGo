@@ -307,6 +307,9 @@ header .image-text .profession {
   flex-direction: column;
   justify-content: space-between;
   overflow-y: scroll;
+  overflow-x: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .menu-bar::-webkit-scrollbar {
@@ -645,6 +648,8 @@ header .image-text .profession {
   gap: 0rem;
   overflow-x: scroll;
   overflow-y: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
   transition-duration: 0.5s;
   transition-timing-function: linear;
   height: 20rem;
@@ -1721,6 +1726,14 @@ header .image-text .profession {
     bottom: 0;
     width: auto;
     margin: auto;
+  }
+
+  .Now_playing_movies_div,
+  .current_popular_movies_div,
+  .Top_rated_movies_div,
+  .Casdiv {
+    -ms-overflow-style: auto; /* IE and Edge */
+    scrollbar-width: auto; /* Firefox */
   }
 }
 
