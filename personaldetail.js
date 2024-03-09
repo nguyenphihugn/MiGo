@@ -78,7 +78,7 @@ const personMoivesfun = (movie) => {
     movie.id
   }" src="https://image.tmdb.org/t/p/w500/${movie.poster_path}"
     loading="lazy" 
-          onerror="this.onerror=null;this.src='./resources/biglogo.png';"
+          onerror="this.onerror=null;this.src='./images/image-removebg-preview.png';"
            alt="${movie.title}"></a>
            <p class="movie_title movie_title_search" >${movie.title}</p>
            <div class="date_rating">

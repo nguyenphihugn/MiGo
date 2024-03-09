@@ -148,7 +148,7 @@ const searchfun = (movie) => {
   <a class="posterlink" href=${url}> <img class="poster" data-id="${
     movie.id
   }" src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" 
-        onerror="this.onerror=null;this.src='./images/logoblur.png';"
+        onerror="this.onerror=null;this.src='./images/image-removebg-preview.png';"
         loading="lazy" alt="${movie.title}"></a>
          <p class="movie_title">${movie.title}</p>
          <div class="date_rating">

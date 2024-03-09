@@ -161,7 +161,7 @@ const searchMoviefun = (movie) => {
     <a class="posterlink" href="${url}"> <img class="poster" data-id="${
     movie.id
   }"
-  src='./images/logoblur.png'
+  src='./images/image-removebg-preview.png'
   data-src="https://image.tmdb.org/t/p/w500/${movie.poster_path}"
   loading="lazy" 
   onload="this.src=this.getAttribute('data-src')"

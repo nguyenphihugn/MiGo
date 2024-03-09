@@ -70,7 +70,7 @@ const Castfun = (castee) => {
   let url = "./personDetail.html?id=" + encodeURIComponent(castee.id);
   return `<div class="Now_playing_movies castdiv" >
       <a class="posterlink" href="${url}"> <img class="poster" data-id="${castee.id}" src="https://image.tmdb.org/t/p/w500/${castee.profile_path}"
-          onerror="this.onerror=null;this.src='./images/logoblur.png';"
+          onerror="this.onerror=null;this.src='./images/image-removebg-preview.png';"
            loading="lazy" alt="${castee.original_name}"></a>
           <div class="name_character_container">
            <p class="movie_title">${castee.original_name}</p>
@@ -150,7 +150,7 @@ const NowPlayingfun = (movie) => {
       <a class="posterlink" href="${url}"> <img class="poster" data-id="${
     movie.id
   }" src="https://image.tmdb.org/t/p/w500/${movie.poster_path}"
-          onerror="this.onerror=null;this.src='./images/logoblur.png';"
+          onerror="this.onerror=null;this.src='./images/image-removebg-preview.png';"
            loading="lazy"  alt="${movie.title}"></a>
            <p class="movie_title">${movie.title}</p>
            <div class="date_rating">
@@ -278,7 +278,7 @@ const html2 = function (moviee) {
       <img class="movie_details_poster" src="https://image.tmdb.org/t/p/w500/${
         moviee.poster_path
       }"
-      onerror="this.onerror=null;this.src='./images/logoblur.png';"
+      onerror="this.onerror=null;this.src='./images/image-removebg-preview.png';"
        alt="title">
       <div class="movie_details_about">
           <h2 class="movie_details_title">${moviee.title}</h2>         
@@ -365,7 +365,7 @@ const recommMovieFun = (mov) => {
       <a class="posterlink" href="${url}"> <img class="poster" data-id="${
     mov.id
   }" src="https://image.tmdb.org/t/p/w500/${mov.poster_path}" 
-          onerror="this.onerror=null;this.src='./images/logoblur.png';"
+          onerror="this.onerror=null;this.src='./images/image-removebg-preview.png';"
           loading="lazy" alt="${mov.title}"></a>
            <p class="movie_title">${mov.title}</p>
            <div class="date_rating">
@@ -390,7 +390,7 @@ const simimarMoviefun = (movie) => {
       <a class="posterlink" href="${url}"> <img class="poster" data-id="${
     movie.id
   }" src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" 
-          onerror="this.onerror=null;this.src='./images/logoblur.png';"
+          onerror="this.onerror=null;this.src='./images/image-removebg-preview.png';"
           loading="lazy" alt="${movie.title}"></a>
            <p class="movie_title">${movie.title}</p>
            <div class="date_rating">

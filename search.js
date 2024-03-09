@@ -130,7 +130,7 @@ const searchMoviefun = (movie) => {
     <a class="posterlink" href="${url}"> <img class="poster" data-id="${
     movie.id
   }"
-  src='./images/logoblur.png'
+  src='./images/image-removebg-preview.png'
   data-src="https://image.tmdb.org/t/p/w500/${movie.poster_path}"
   loading="lazy" 
   onload="this.src=this.getAttribute('data-src')"
@@ -157,7 +157,7 @@ const searchPersonFun = (Castee) => {
   // console.log(Castee);
   return `<div class="item" >
     <a class="posterlink" href="${url}"> <img class="poster" data-id="${Castee.id}" 
-    src='./images/logoblur.png'
+    src='./images/image-removebg-preview.png'
     data-src="https://image.tmdb.org/t/p/w500/${Castee.profile_path}" 
     loading="lazy" 
     onload="this.src=this.getAttribute('data-src')"
@@ -179,33 +179,41 @@ const dateFormatter = function (date) {
   return newDate;
 };
 
-searchinput.addEventListener("input", function () {
-  if (searchinput.value != "") {
-    let htmll = "";
-    searchResultDiv.innerHTML = "";
-    let searchQuery = searchinput.value;
-    searchinfo.textContent = `Kết quả tìm kiếm cho ${searchQuery} :`;
-    searchitem(searchQuery).then((movies) => {
-      movies.forEach((moviee) => {
-        if (
-          moviee.media_type == "movie" &&
-          "release_date" in moviee &&
-          moviee.poster_path != null
-        ) {
-          htmll += searchMoviefun(moviee);
-        }
+const searchInput = document.getElementById("searchinput");
+let typingTimer;
+const delay = 1000;
+searchInput.addEventListener("keyup", function () {
+  clearTimeout(typingTimer);
 
-        if (moviee.media_type == "person" && moviee.profile_path != null) {
-          htmll += searchPersonFun(moviee);
-        }
-        searchResultDiv.innerHTML = htmll;
+  typingTimer = setTimeout(function () {
+    console.log("User stopped typing!");
+    if (searchinput.value != "") {
+      let htmll = "";
+      searchResultDiv.innerHTML = "";
+      let searchQuery = searchinput.value;
+      searchinfo.textContent = `Kết quả tìm kiếm cho ${searchQuery} :`;
+      searchitem(searchQuery).then((movies) => {
+        movies.forEach((moviee) => {
+          if (
+            moviee.media_type == "movie" &&
+            "release_date" in moviee &&
+            moviee.poster_path != null
+          ) {
+            htmll += searchMoviefun(moviee);
+          }
+
+          if (moviee.media_type == "person" && moviee.profile_path != null) {
+            htmll += searchPersonFun(moviee);
+          }
+          searchResultDiv.innerHTML = htmll;
+        });
       });
-    });
-  } else {
-    htmll = "";
-    searchResultDiv.innerHTML = "";
-    searchinfo.textContent = `Nhập từ khoá tìm kiếm`;
-  }
+    } else {
+      htmll = "";
+      searchResultDiv.innerHTML = "";
+      searchinfo.textContent = `Nhập từ khoá tìm kiếm`;
+    }
+  }, delay);
 });
 
 window.onload = function () {
