@@ -83,24 +83,55 @@ const Castfun = (castee) => {
 
 const comment = function (id) {
   return `<div
-  class="fb-comments"
   data-href="https://migomovie.netlify.app/moviedetail?id=${id}"
   data-width="600"
   data-numposts="5"
   data-order-by="reverse_time"
+  class="fb-comments"
 ></div>`;
 };
 
-const Trailerfunc = function (id) {
-  return `<iframe class="youtubePlayer" src="https://autoembed.co/movie/tmdb/${id}?trailer=1" width="100%" height="100%" loading="lazy" frameborder="0" allowfullscreen></iframe>`;
+// return `<iframe class="youtubePlayer" src="https://autoembed.co/movie/tmdb/${id}?trailer=1" width="100%" height="100%" loading="lazy" frameborder="0" allowfullscreen></iframe>`;
+
+// const getTrailerId = async function (id) {
+// const Trailerfunc = async function (id) {
+//   const res = await fetch(
+//     `https://api.themoviedb.org/3/movie/${id}/videos?language=vi-VN`
+//   );
+//   const data = await res.json();
+//   const trailerId = data.results;
+//   console.log(trailerId);
+//   return `<iframe class="youtubePlayer" src="https://www.youtube.com/watch?v=${trailerId}" width="100%" height="100%" loading="lazy" frameborder="0" allowfullscreen></iframe>`;
+
+// };
+
+const Trailerfunc = async function (id) {
+  try {
+    const res = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US&api_key=${myApi}`
+    );
+    const data = await res.json();
+    // console.log(data);
+    const arr = data.results.length;
+    // console.log(arr);
+    const trailerId = data.results[arr - 1].key;
+    console.log(trailerId);
+    return trailerId;
+  } catch (error) {
+    console.log(error);
+    return "";
+  }
 };
 
 let url = document.location.href;
 let fetcid = url.slice(url.indexOf("=") + 1);
 const movieLoad = function () {
-  let trailerHtml = Trailerfunc(fetcid);
+  Trailerfunc(fetcid).then((trailerId) => {
+    let trailerHtml = trailerId;
+    Trailer_section.innerHTML = `<iframe class="youtubePlayer" width="100%" height="100%" src="https://www.youtube.com/embed/${trailerHtml}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+  });
   let commentHtml = comment(fetcid);
-  Trailer_section.innerHTML = trailerHtml;
+
   comment_section.innerHTML = commentHtml;
   CurrMovie(fetcid).then((dat) => {
     let htm = "";

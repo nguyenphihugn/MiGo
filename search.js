@@ -181,7 +181,7 @@ const dateFormatter = function (date) {
 
 const searchInput = document.getElementById("searchinput");
 let typingTimer;
-const delay = 1000;
+const delay = 700;
 searchInput.addEventListener("keyup", function () {
   clearTimeout(typingTimer);
 

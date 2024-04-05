@@ -29,7 +29,7 @@
         $("html").show();
       });
     </script>
-    <script src="movieDetails.js" defer></script>
+    <script defer src="movieDetails.js"></script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"
@@ -434,9 +434,9 @@
 
             // Xu ly du lieu
             // console.log(user);
-            // const markBtn = document.querySelector(".btn-mark");
+            const markBtn = document.querySelector(".btn-mark");
             const markIcon = document.querySelector("#mark");
-            btnmark.addEventListener("click", () => {
+            markBtn.addEventListener("click", () => {
               if (checkmark == 1) {
                 remove(ref(database, "users/" + uid + "/movieid/" + markid), {
                   fetcid,
